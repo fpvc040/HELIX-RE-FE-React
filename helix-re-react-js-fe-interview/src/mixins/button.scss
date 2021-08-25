@@ -1,0 +1,21 @@
+@mixin button-disabled {
+  &.disabled,
+  &:disabled {
+    cursor: not-allowed;
+
+    @content;
+
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin button-focus-hover {
+  &:not(:disabled):not(.disabled) {
+    &:focus,
+    &:hover {
+      @content;
+    }
+  }
+}

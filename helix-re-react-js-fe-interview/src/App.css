@@ -3,37 +3,37 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
+/* Test 1 - resizing logo - multiple answers */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    position:fixed; top:0; left:0;
-    /* animation: App-logo-spin infinite 20s linear; */
+    top:0; 
+    width: 50%;
   }
 }
 
+/* Test 2 - logo position is not relative anymore and elements are positioned dynamically*/
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
 .App-link {
   color: #61dafb;
+  margin-bottom: 10px;
+  width: 50%;
+  
 }
 
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+
+
+
+

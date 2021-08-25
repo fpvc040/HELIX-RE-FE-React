@@ -1,0 +1,131 @@
+@mixin TypographyReset {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  hyphens: auto;
+  margin: 0;
+}
+
+@mixin Body1 {
+  @include TypographyReset;
+
+  font-size: $font-2;
+  line-height: 1.385;
+}
+
+@mixin Body2 {
+  @include TypographyReset;
+
+  font-size: 11px;
+  line-height: 1.3636;
+}
+
+@mixin Heading1 {
+  @include TypographyReset;
+
+  font-size: 68px;
+  font-weight: 300;
+  line-height: 1.3676;
+}
+
+@mixin Heading2 {
+  @include TypographyReset;
+
+  font-size: 55px;
+  font-weight: 300;
+  line-height: 1.3636;
+}
+
+@mixin Heading3 {
+  @include TypographyReset;
+
+  font-size: 42px;
+  line-height: 1.357;
+}
+
+@mixin Heading4 {
+  @include TypographyReset;
+
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 1.353;
+}
+
+@mixin Heading5 {
+  @include TypographyReset;
+
+  font-size: 26px;
+  line-height: 1.3462;
+}
+
+@mixin Heading6 {
+  @include TypographyReset;
+
+  font-size: 21px;
+  line-height: 1.381;
+}
+
+@mixin Label {
+  @include TypographyReset;
+
+  font-size: $font-1;
+  font-weight: 600;
+  letter-spacing: .05em;
+  line-height: 1.4;
+}
+
+@mixin Subtitle1 {
+  @include TypographyReset;
+
+  font-size: $font-3;
+  letter-spacing: .05em;
+  line-height: 1.375;
+  text-transform: uppercase;
+}
+
+@mixin Subtitle2 {
+  @include TypographyReset;
+
+  font-size: $font-2;
+  font-weight: 600;
+  letter-spacing: .03em;
+  line-height: 1.3846;
+  text-transform: uppercase;
+}
+
+@mixin Subtitle3 {
+  @include TypographyReset;
+
+  font-size: $font-2;
+  font-weight: 600;
+  line-height: 1.3846;
+  text-transform: capitalize;
+}
+
+@mixin TypographyStyle1 {
+  @include TypographyReset;
+
+  font-size: $font-3;
+  letter-spacing: .05em;
+  margin: 0;
+  text-transform: uppercase;
+
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
+}
+
+@mixin TypographyStyle5 {
+  @include TypographyReset;
+
+  color: $grey-700;
+  font-size: 21px;
+}
+
+@mixin TypographyStyle6 {
+  @include TypographyReset;
+
+  color: $grey-700;
+  font-size: 11px;
+  line-height: 1.3636;
+}

@@ -1,0 +1,85 @@
+{
+  "_args": [
+    [
+      "@helix-re/js-sh@1.0.6",
+      "/home/taru0904/Desktop/Helix_Git_Projects/helix-web"
+    ]
+  ],
+  "_development": true,
+  "_from": "@helix-re/js-sh@1.0.6",
+  "_id": "@helix-re/js-sh@1.0.6",
+  "_inBundle": false,
+  "_integrity": "sha512-bxzABP6YMLVw1fgJKrtI/mv2MNNkZ797wfl91JsuFlillFZbmaTAoiSc5iA/kDCfOMZKNn1EewRlS0wjURSKmw==",
+  "_location": "/@helix-re/js-sh",
+  "_phantomChildren": {
+    "glob": "7.1.3",
+    "interpret": "1.2.0",
+    "rechoir": "0.6.2"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@helix-re/js-sh@1.0.6",
+    "name": "@helix-re/js-sh",
+    "escapedName": "@helix-re%2fjs-sh",
+    "scope": "@helix-re",
+    "rawSpec": "1.0.6",
+    "saveSpec": null,
+    "fetchSpec": "1.0.6"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://repo.helix.re/repository/helix-npm/@helix-re/js-sh/-/js-sh-1.0.6.tgz",
+  "_spec": "1.0.6",
+  "_where": "/home/taru0904/Desktop/Helix_Git_Projects/helix-web",
+  "author": {
+    "name": "Lubos",
+    "email": "lubos@helix.re"
+  },
+  "bin": {
+    "js-sh": "bin/js-sh.js"
+  },
+  "bugs": {
+    "url": "https://github.com/helix-re/js-sh/issues"
+  },
+  "dependencies": {
+    "commander": "^2.20.0",
+    "shelljs": "^0.8.3"
+  },
+  "description": "Common JavaScript shell utility commands.",
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-jest": "^22.9.0",
+    "husky": "^3.0.0",
+    "jest": "^24.8.0"
+  },
+  "homepage": "https://github.com/helix-re/js-sh#readme",
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
+  },
+  "keywords": [
+    "helix",
+    "shell"
+  ],
+  "license": "ISC",
+  "main": "src/index.js",
+  "name": "@helix-re/js-sh",
+  "publishConfig": {
+    "registry": "https://repo.helix.re/repository/helix-npm-host/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/helix-re/js-sh.git"
+  },
+  "scripts": {
+    "lint": "echo \"No linters active yet.\" && exit 0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.6"
+}

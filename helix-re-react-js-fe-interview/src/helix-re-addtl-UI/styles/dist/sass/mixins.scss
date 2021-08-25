@@ -1,0 +1,9 @@
+@import './constants.scss';
+
+@mixin animation($type, $duration: $duration, $timing-function: $timing-function, $options: null) {
+  animation: $type $duration $timing-function $options;
+}
+
+@mixin transition($type: all, $duration: $duration, $timing-function: $timing-function, $options: null) {
+  transition: $type $duration $timing-function $options;
+}

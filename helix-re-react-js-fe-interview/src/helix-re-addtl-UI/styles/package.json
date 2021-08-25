@@ -1,0 +1,106 @@
+{
+  "_args": [
+    [
+      "@helix-re/styles@1.0.40",
+      "/home/taru0904/Desktop/Helix_Git_Projects/helix-web"
+    ]
+  ],
+  "_from": "@helix-re/styles@1.0.40",
+  "_id": "@helix-re/styles@1.0.40",
+  "_inBundle": false,
+  "_integrity": "sha512-poqUpISU1V1aRG2sZpsCZ2tLuOcy4r8mxUnQ0wrVOVR9GkzEtJ7Y6g54Xoj/OIurZMloFobzV66EBzdxfppEoA==",
+  "_location": "/@helix-re/styles",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@helix-re/styles@1.0.40",
+    "name": "@helix-re/styles",
+    "escapedName": "@helix-re%2fstyles",
+    "scope": "@helix-re",
+    "rawSpec": "1.0.40",
+    "saveSpec": null,
+    "fetchSpec": "1.0.40"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://repo.helix.re/repository/helix-npm/@helix-re/styles/-/styles-1.0.40.tgz",
+  "_spec": "1.0.40",
+  "_where": "/home/taru0904/Desktop/Helix_Git_Projects/helix-web",
+  "author": {
+    "name": "Lubos",
+    "email": "lubos@helix.re"
+  },
+  "browser": "dist/es.js",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "bugs": {
+    "url": "https://github.com/helix-re/helix-styles/issues"
+  },
+  "dependencies": {
+    "node-sass": "^4.11.0"
+  },
+  "description": "HELIX RE design specifications.",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "autoprefixer": "^9.5.1",
+    "babel-loader": "^8.0.6",
+    "husky": "^1.3.1",
+    "isomorphic-fetch": "^2.2.1",
+    "ncp": "^2.0.0",
+    "nodemon": "^1.18.11",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.2",
+    "rimraf": "^2.6.3",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "files": [
+    "dist",
+    "index.scss",
+    "package-lock.json",
+    "package.json",
+    "README.md"
+  ],
+  "homepage": "https://github.com/helix-re/helix-styles#readme",
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
+  },
+  "keywords": [
+    "design",
+    "helix",
+    "styles"
+  ],
+  "license": "ISC",
+  "main": "dist/cjs.js",
+  "name": "@helix-re/styles",
+  "publishConfig": {
+    "registry": "https://repo.helix.re/repository/helix-npm-host/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/helix-re/helix-styles.git"
+  },
+  "scripts": {
+    "build": "npm-run-all clean sync webpack sass:cp css:dev css:prod",
+    "clean": "rimraf dist",
+    "css:dev": "node-sass --include-path scss index.scss dist/helix.css && npm run postcss:dev",
+    "css:prod": "node-sass --include-path scss index.scss dist/helix.min.css --output-style compressed && npm run postcss:prod",
+    "lint": "echo \"No linters active yet.\" && exit 0",
+    "postcss:dev": "postcss -u autoprefixer -o dist/helix.css dist/helix.css",
+    "postcss:prod": "postcss -u autoprefixer -o dist/helix.min.css dist/helix.min.css",
+    "prepublishOnly": "npm run build",
+    "sass:cp": "ncp src/sass dist/sass",
+    "sync": "node utils/sync.js",
+    "watch": "nodemon -e scss -x \"npm run build\"",
+    "webpack": "webpack --config webpack/webpack.config.js"
+  },
+  "version": "1.0.40"
+}

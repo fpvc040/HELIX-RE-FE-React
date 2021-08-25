@@ -1,0 +1,6 @@
+@mixin zoom-controls-bottom-left {
+  bottom: $grid-4;
+  left: $grid-4;
+  position: absolute;
+  z-index: 2; // above Potree Viewers
+}

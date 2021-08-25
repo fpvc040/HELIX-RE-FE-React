@@ -1,0 +1,925 @@
+$border-radius: 3px !default;
+$viewer-gallery-width: 490px !default;
+
+$breakpoint-sm: 480px;
+$breakpoint-md: 900px;
+$breakpoint-lg: 1100px;
+
+@mixin query($type) {
+  @if $type == mobile {
+    @media (max-width: $breakpoint-sm) {
+      @content;
+    }
+  }
+
+  @else {
+    @media (min-width: #{$breakpoint-sm + 1}) {
+      @content;
+    }
+  }
+}
+
+@mixin caps-heading {
+  font-size: inherit;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@mixin plain-button {
+  cursor: pointer;
+  outline: none; // make sure to create your own focus styling
+  padding: 0;
+}
+
+@mixin super-plain-button {
+  @include plain-button;
+
+  background: none;
+  border: none;
+  text-align: left;
+}
+
+@mixin button-dropzone {
+  @include super-plain-button;
+  @include transition(color);
+
+  text-decoration: underline;
+
+  &:focus,
+  &:hover {
+    color: $yellow-500;
+  }
+}
+
+@mixin dark-bg-button {
+  color: $grey-200;
+
+  &,
+  &:focus,
+  &:hover,
+  &:active {
+    background: transparent;
+  }
+
+  &:focus,
+  &:hover {
+    border-color: $white;
+    color: $white;
+  }
+
+  &[disabled] {
+    &,
+    &:focus,
+    &:hover,
+    &:active {
+      border-color: $grey-300;
+      color: $grey-300;
+    }
+  }
+}
+
+@mixin border-radius {
+  border-radius: $border-radius;
+}
+
+@mixin dark-bg-button-primary {
+  background: $grey-200;
+  border-color: $grey-200;
+  color: $grey-500;
+
+  &:focus,
+  &:hover,
+  &:active {
+    background: $white;
+    border-color: $white;
+    color: $black;
+  }
+
+  &[disabled] {
+    &,
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: $grey-300;
+      border-color: $grey-300;
+      color: $grey-500;
+    }
+  }
+}
+
+@mixin dark-bg-table {
+  td,
+  th {
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  :global(.ant-table-thead) > tr > th {
+    border-bottom-color: $grey-300;
+    color: $grey-300;
+    font-weight: bold;
+
+    &:global(.ant-table-column-has-actions.ant-table-column-sort),
+    &:global(.ant-table-column-has-actions.ant-table-column-has-sorters):hover {
+      background: transparent;
+    }
+  }
+
+  :global(.ant-table-tbody) > tr > td {
+    border-bottom-color: $grey-400;
+
+    > a {
+      color: inherit;
+    }
+  }
+
+  :global(.ant-table-placeholder) {
+    background: transparent;
+    border-bottom: 0;
+  }
+}
+
+@mixin fill {
+  height: 100%;
+  width: 100%;
+}
+
+@mixin icon-button {
+  @include square(32px);
+
+  text-align: center;
+  user-select: none;
+
+  i,
+  svg {
+    vertical-align: middle;
+  }
+
+  i {
+    font-size: 18px;
+  }
+}
+
+@mixin plain-ordered-list {
+  margin: 0;
+  padding: 0 0 0 1em;
+}
+
+@mixin reset-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin absolute-fill {
+  @include fill;
+
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+@mixin icon-ellipsis {
+  :global(.anticon-ellipsis),
+  &:global(.anticon-ellipsis) {
+    font-size: 26px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(.8);
+
+    svg {
+      height: 100%;
+    }
+  }
+}
+
+@mixin icon-plus {
+  :global(.anticon-plus) {
+    font-size: 18px;
+  }
+}
+
+@mixin popover {
+  :global(.ant-popover-inner) {
+    border-radius: 0;
+  }
+
+  ul:not(:global(.ant-menu)) {
+    @include reset-list;
+
+    width: 100%;
+  }
+
+  li:not(:global(.ant-menu-item)) {
+    margin-top: 15px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    a,
+    button {
+      color: $black;
+      display: block;
+      text-align: left;
+      width: 100%;
+    }
+
+    button {
+      @include super-plain-button;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+@mixin collapse {
+  border: none;
+  border-radius: 0;
+
+  > :global(.ant-collapse-item) {
+    &,
+    > :global(.ant-collapse-content) {
+      border-color: $grey-400;
+    }
+
+    > :global(.ant-collapse-header) {
+      :global(.ant-collapse-arrow) {
+        left: auto;
+        right: 16px;
+        transform: none;
+
+        svg {
+          transform: rotate(90deg);
+        }
+      }
+
+      &[aria-expanded="true"] {
+        :global(.ant-collapse-arrow) svg {
+          // We need overwrite the default icon rotation. Default is > and we want it to be \/.
+          transform: rotate(-90deg) !important;
+        }
+      }
+    }
+
+    &:last-child {
+      &,
+      > :global(.ant-collapse-header),
+      > :global(.ant-collapse-content) {
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+@mixin collapse-divider {
+  border: solid $grey-400;
+  border-width: 1px 0 0;
+  margin: $grid-2 -#{$grid-2};
+}
+
+@mixin slider {
+  :global(.ant-slider-rail) {
+    background: $grey-300;
+    border-radius: 0;
+  }
+
+  :global(.ant-slider-track) {
+    display: none;
+  }
+
+  :global(.ant-slider-dot) {
+    display: none;
+  }
+
+  :global(.ant-slider-handle) {
+    border: none;
+    height: 25px;
+    margin-left: -12.5px;
+    margin-top: -10.5px;
+    width: 25px;
+  }
+}
+
+@mixin page-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@mixin page-header-section {
+  align-items: center;
+  display: flex;
+}
+
+@mixin gutter-handle {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  height: 50px;
+  position: absolute;
+  width: 50px;
+}
+
+@mixin sidebar-content {
+  padding: $grid-4;
+}
+
+@mixin tile-container {
+  column-gap: $grid-3;
+  display: grid;
+  grid-column-gap: $grid-3;
+  grid-row-gap: $grid-3;
+  grid-template-columns: repeat(6, 1fr);
+  row-gap: $grid-3;
+}
+
+@mixin image-black-overlay {
+  &::before {
+    background-image:
+      linear-gradient(
+        to top,
+        rgba($black, .51),
+        rgba($black, 0),
+        rgba($black, 0),
+        rgba($black, .51),
+      );
+    bottom: 0;
+    content: '';
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+@mixin image-cover($edge) {
+  @include square($edge);
+
+  object-fit: cover;
+  user-select: none;
+}
+
+@mixin tile-text {
+  @include absolute-fill;
+  @include center-content;
+
+  font-style: italic;
+}
+
+@mixin viewer-panel {
+  position: absolute;
+  right: $grid-4;
+  top: $grid-4;
+  width: 250px;
+}
+
+@mixin panel-header {
+  border-bottom: 1px solid $grey-500;
+  margin-bottom: $grid-3;
+  padding: $grid-3 0;
+}
+
+@mixin panel-header-button-selected {
+  border-color: $white;
+
+  svg {
+    color: $white;
+  }
+}
+
+@mixin filters {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: -1em;
+  margin-right: -#{$grid-3};
+
+  & > * {
+    margin-bottom: 1em;
+    margin-right: $grid-3;
+  }
+}
+
+@mixin list-page-filter-row {
+  align-items: center;
+  border-bottom: 1px solid $grey-500;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+}
+
+@mixin upload-header {
+  border: none;
+  height: auto;
+  margin: 0;
+}
+
+@mixin flex-row {
+  display: flex;
+
+  > :not(:last-child) {
+    margin-right: $grid-1;
+  }
+}
+
+@mixin panel-actions {
+  @include flex-row;
+
+  justify-content: flex-end;
+}
+
+@mixin circular-button($background-color: $grey-300) {
+  @include transition(background-color);
+
+  background-color: $background-color;
+  border: none;
+  color: $grey-700;
+  min-width: 0; // .ant-btn-circle class have minimum width and it breaks our designs
+}
+
+@mixin upload-area {
+  border: 1px dashed $grey-200;
+  border-radius: 6px;
+  height: 50%;
+  margin: 0 $grid-3;
+  padding: 4em;
+  text-align: center;
+}
+
+@mixin plain-link {
+  text-decoration: none;
+
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@mixin link {
+  @include transition(color);
+
+  cursor: pointer;
+  font-style: inherit;
+  text-decoration: underline;
+}
+
+@mixin label {
+  color: $grey-300;
+  font-size: $font-1;
+  margin-bottom: .5em;
+}
+
+@mixin address {
+  white-space: pre-wrap;
+}
+
+@mixin modal-heading {
+  color: $alert-red;
+  font-size: $font-3;
+  margin-bottom: $grid-4;
+}
+
+@mixin model-card-icon {
+  @include circle($icon-size);
+
+  background: $white no-repeat 50%;
+  text-align: center;
+
+  img {
+    height: 75%;
+    object-fit: contain;
+    width: 75%;
+  }
+}
+
+@mixin marker {
+  fill-opacity: 0;
+  stroke: $white;
+  stroke-width: 2px;
+}
+
+@mixin marker-selected {
+  fill: $yellow-500;
+  fill-opacity: 1;
+  stroke: $yellow-500;
+}
+
+@mixin spin($duration: 1s) {
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  animation: spin $duration linear infinite;
+}
+
+@mixin square($edge) {
+  height: $edge;
+  width: $edge;
+}
+
+@mixin circle($radius) {
+  @include square($radius);
+
+  border-radius: 50%;
+}
+
+@mixin circle-icon($radius: 25px) {
+  @include circle($radius);
+
+  margin-right: 8px;
+}
+
+@mixin viewer-settings-section {
+  @include background-blur;
+
+  background: rgba($black, .6);
+  border: 1px solid $grey-500;
+  color: $grey-200;
+  margin-top: 1px;
+  outline: none;
+  padding: $grid-2;
+  text-align: left;
+
+  > header {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@mixin viewer-settings-heading-button {
+  @include super-plain-button;
+  @include border-radius;
+
+  border: 1px solid transparent;
+  cursor: pointer;
+  cursor: text;
+  width: calc(100% - 42px);
+
+  &:hover,
+  &:focus {
+    border-color: $grey-500;
+  }
+}
+
+@mixin viewer-settings-status {
+  @include circle-icon;
+  @include center-content;
+}
+
+@mixin no-preview {
+  @include center-content;
+  @include fill;
+
+  color: $grey-300;
+  font-size: $font-3;
+}
+
+@mixin table-dark-header($selector: ":global .ant-table-thead > tr > th") {
+  #{$selector} {
+    border-bottom-color: $grey-400;
+    font-size: 12px;
+    letter-spacing: .05em;
+    padding-left: $grid-3;
+    padding-right: $grid-3;
+  }
+}
+
+@mixin table-dark-row {
+  :global .ant-table-tbody > tr {
+    @include transition(background-color);
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($grey-600, .5);
+
+      > td {
+        // Overwrite default background color on hover
+        background: inherit !important;
+      }
+    }
+  }
+}
+
+@mixin table-dark-spacing {
+  :global .ant-table-tbody,
+  :global .ant-table-thead {
+    > tr {
+      > td,
+      > th {
+        &:first-child {
+          padding-left: $grid-3;
+        }
+      }
+
+      > td {
+        border-bottom-color: $grey-600;
+
+        &:global(.ant-table-column-has-sorters) {
+          padding: $grid-3;
+
+          > a {
+            @include transition(color);
+
+            &:focus {
+              color: $yellow-500;
+            }
+          }
+        }
+
+        &:not(:global(.ant-table-column-has-sorters)) {
+          padding: $grid-3 0;
+        }
+      }
+    }
+  }
+}
+
+@mixin table-empty-placeholder {
+  color: $grey-200;
+  display: block;
+  font-style: italic;
+  margin: $grid-4 0;
+
+  > button {
+    @include super-plain-button;
+    @include link;
+    @include transition(color);
+
+    &:focus,
+    &:hover {
+      color: $yellow-500;
+    }
+  }
+}
+
+@mixin table-dark {
+  @include table-dark-header;
+  @include table-dark-spacing;
+  @include table-dark-row;
+
+  :global .ant-table {
+    color: $grey-200;
+  }
+
+  :global .ant-table-placeholder {
+    display: none;
+  }
+
+  :global .ant-table-thead .ant-table-column-sorters {
+    @include transition(color);
+
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+
+    .ant-table-column-sorter {
+      display: inline-block;
+      height: 12px;
+      margin-top: 0;
+      position: relative;
+      right: 0;
+      top: 0;
+      width: 13px;
+
+      .ant-table-column-sorter-inner > .anticon {
+        @include transition(color);
+
+        margin-top: 0;
+        position: absolute;
+        top: 0;
+
+        &.off {
+          color: transparent !important;
+        }
+
+        &.on {
+          color: $grey-300;
+        }
+      }
+    }
+
+    &:hover {
+      color: $white;
+
+      .ant-table-column-sorter .anticon.on {
+        color: $white;
+      }
+    }
+  }
+}
+
+@mixin focused-row {
+  background: rgba($white, .03);
+}
+
+@mixin placeholder($color: $grey-300) {
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $color;
+  }
+
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $color;
+  }
+
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $color;
+  }
+
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $color;
+    opacity: 1; /* Firefox */
+  }
+
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $color;
+  }
+
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    color: $color;
+  }
+}
+
+@mixin input-number-hide-spinners {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button { /* Chrome/Opera/Safari */
+    -webkit-appearance: none;
+  }
+
+  -moz-appearance: textfield; /* Firefox */
+}
+
+@mixin map-marker {
+  $local-height: 30px;
+  $local-width: 21px;
+
+  height: $local-height;
+  left: calc(50% - #{$local-width / 2});
+  pointer-events: none;
+  position: absolute;
+  top: calc(50% - #{$local-height});
+  user-select: none;
+  width: $local-width;
+}
+
+@mixin map-source {
+  @include fill;
+
+  object-fit: cover;
+  user-select: none;
+}
+
+@mixin icon-share {
+  color: $grey-300;
+
+  svg {
+    @include transition(color);
+
+    color: currentColor;
+  }
+
+  &:focus,
+  &:hover {
+    color: $white;
+  }
+}
+
+// Hamburger
+$launcher-icon-size: 34px;
+$launcher-width-sm: 70px !default;
+$launcher-width-lg: 250px !default;
+
+@mixin hamburger {
+  $local-design-size: 20px;
+  $local-icon-size: 12px;
+  $local-line-offset: 4px;
+  $local-line: ($launcher-icon-size - $local-line-offset) / 2;
+  $local-margin: $grid-4 - ($launcher-icon-size - $local-design-size);
+
+  @include square($launcher-icon-size);
+  @include transition(all);
+  @include border-radius;
+
+  color: $grey-300;
+  display: block;
+  margin: $local-margin (($launcher-width-sm - $launcher-icon-size) / 2);
+  position: relative;
+
+  &::after,
+  &::before {
+    @include transition(transform);
+
+    background-color: currentColor;
+    content: '';
+    display: block;
+    height: 1px;
+    left: ($launcher-icon-size - $local-icon-size) / 2;
+    position: absolute;
+    transform-origin: top left;
+    width: $local-icon-size;
+  }
+
+  &::after {
+    top: $local-line;
+  }
+
+  &::before {
+    top: $local-line + $local-line-offset;
+  }
+}
+
+@mixin hamburger-open {
+  &::after {
+    transform: translateX(1px) translateY(-3.5px) rotateZ(45deg) scale(1.41666);
+  }
+
+  &::before {
+    transform: translateY(4px) rotateZ(-45deg) scale(1.41666);
+  }
+}
+
+// Space selector dropdown.
+@mixin space-active {
+  border-bottom-color: $white;
+  color: $white;
+}
+
+@mixin space-disabled {
+  border-bottom-color: $grey-400;
+  color: $grey-400;
+}
+
+// Close (X) button.
+@mixin icon-x {
+  @include transition(color);
+
+  color: $grey-300;
+  display: block;
+  font-size: 0;
+  position: relative;
+
+  &::after,
+  &::before {
+    $local-height: 1px;
+    $local-width: 16px;
+
+    background-color: currentColor;
+    content: '';
+    display: block;
+    height: $local-height;
+    left: calc(50% - #{$local-width / 2});
+    position: absolute;
+    top: calc(50% - #{$local-height / 2});
+    width: $local-width;
+  }
+
+  &::after {
+    transform: rotateZ(45deg);
+  }
+
+  &::before {
+    transform: rotateZ(-45deg);
+  }
+
+  &:focus,
+  &:hover {
+    color: $black;
+  }
+}
+
+// Flexbox.
+@mixin align-horizontally {
+  align-items: center;
+  display: flex;
+}
+
+@mixin center-content {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+// Background blur
+@mixin background-blur($radius: 5px) {
+  backdrop-filter: blur($radius);
+}
+
+// Text.
+@mixin textEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
