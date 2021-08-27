@@ -4,11 +4,6 @@ import React, { useState } from 'react';
 import styles from './index.scss';
 
 const Button = ({ children, onClick, btnColor = 'teal', labelColor, disabled, type, style, ...props }) => {
-  /* const [ hover, setHover ] = useState(false);  create state type for hover 
-  const toggleHover = () => {
-    setHover(!hover);
-  };
-  */
   const commonStyles = {
     backgroundColor : btnColor,
     color           : labelColor || 'white'
@@ -47,13 +42,6 @@ const Button = ({ children, onClick, btnColor = 'teal', labelColor, disabled, ty
     case 'block':
     btnStyle = blockStyles;
     break;
-    case 'outline':
-    // if (hover) {
-    //   btnStyle = outlineHoverStyle;
-    // }
-    // else {
-    //   btnStyle = outlineStyles;
-    // }
     break;
     default:
     btnStyle = {
@@ -70,8 +58,7 @@ const Button = ({ children, onClick, btnColor = 'teal', labelColor, disabled, ty
       disabled ? { ...commonStyles, ...btnStyle, ...disabledStyle, ...style } :
       { ...commonStyles, ...btnStyle, ...style }
     }
-    // onMouseEnter={toggleHover}
-    // onMouseLeave={toggleHover}
+    
     {...props}
     type="button"
     onClick={
